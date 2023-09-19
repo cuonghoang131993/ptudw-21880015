@@ -1,17 +1,6 @@
 {
-  "use_env_variable": "POSTGRESQL_URL",
   "development": {
-    "username": "ptudwprojectdb",
-    "password": "jh6zNB0bzveZH9A3EdUGl6hPqTv6GlfL",
-    "database": "ptudwprojectdb_duza",
-    "host": "dpg-ck21vcfhdsdc73ecimcg-a.singapore-postgres.render.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "use_env_variable": "POSTGRESQL_URL"
   },
   "test": {
     "username": "postgres",
@@ -21,10 +10,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "ptudwprojectdb",
-    "password": "jh6zNB0bzveZH9A3EdUGl6hPqTv6GlfL",
-    "database": "ptudwprojectdb_duza",
-    "host": "dpg-ck21vcfhdsdc73ecimcg-a.singapore-postgres.render.com",
+    "use_env_variable": "POSTGRESQL_URL",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
