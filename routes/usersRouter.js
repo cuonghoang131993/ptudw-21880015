@@ -6,6 +6,7 @@ const controller = require("../controllers/usersController");
 const { body, validationResult } = require('express-validator');
 
 router.get('/checkout', controller.checkout);
+
 router.post('/placeorders',
     body('firstName').notEmpty().withMessage('First name is required!'),
     body('lastName').notEmpty().withMessage('Last name is required!'),
