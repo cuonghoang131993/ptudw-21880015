@@ -88,7 +88,7 @@ async function clearCart() {
 function placeorders(e) {
   e.preventDefault();
 
-  const addressId = document.querySelector('input[name=addressId]:checked');
+  const addressId = document.querySelector("input[name=addressId]:checked");
   if (!addressId || addressId.value == 0) {
     if (!e.target.checkValidity()) {
       return e.target.reportValidity();
@@ -96,4 +96,18 @@ function placeorders(e) {
   }
 
   e.target.submit();
+}
+
+function checkPasswordConfirm(formId) {
+  let password = document.querySelector(`#${formId} [name=password]`);
+  let confirmPassword = document.querySelector(
+    `#${formId} [name=confirmPassword]`
+  );
+
+  if (password.value !== confirmPassword.value) {
+    confirmPassword.setCustomValidity("Password not match!");
+    confirmPassword.reportValidity();
+  } else {
+    confirmPassword.setCustomValidity("");
+  }
 }

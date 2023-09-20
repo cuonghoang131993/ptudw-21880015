@@ -68,4 +68,54 @@ passport.use(
   )
 );
 
+// ham dang ky tai khoan
+passport.use(
+  "local-register",
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+      passReqToCallback: true,
+    },
+    async (req, email, password, done) => {
+      if (email) {
+        email = email.toLowerCase();
+      }
+      if (req.user) {
+        // neu nguoi dung da dang nhap, bo qua
+        return done(null, req.user);
+      }
+      try {
+        let user = await models.User.findOne({ where: { email } });
+        if (user) {
+          // neu email da ton tai
+          return done(
+            null,
+            false,
+            req.flash("registerMessage", "Email is aready taken!")
+          );
+        }
+
+        user = await models.User.create({
+          email,
+          password: bcrypt.hashSync(password, bcrypt.genSaltSync(8)),
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+        });
+        // thong bao dang ky thanh cong
+        done(
+          null,
+          false,
+          req.flash(
+            "registerMessage",
+            "You have registered successfully. Please login!"
+          )
+        );
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
+
 module.exports = passport;
