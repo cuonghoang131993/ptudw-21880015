@@ -20,13 +20,6 @@ const flash = require('connect-flash');
 //  Cau hinh public static folder
 app.use(express.static(__dirname + "/public"));
 
-app.get('/createTables', (req, res) => {
-  let models = require('./models');
-  models.sequelize.sync().then(() => {
-    res.send('tables created');
-  });
-});
-
 // Cau hinh su dung express-handlebars
 app.engine(
   "hbs",
